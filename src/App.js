@@ -2,6 +2,7 @@
 // import './App.css';
 import Nav from './components/Nav'
 import Body from './components/Body'
+import { UserProvider } from './context/user';
 
 function App() {
   return (
@@ -22,8 +23,10 @@ function App() {
     //   </header>
     // </div>
     <>
-      <Nav />
-      <Body />
+      <UserProvider>
+        <Nav />
+        <Body />
+      </UserProvider>
     </>
   );
 }
