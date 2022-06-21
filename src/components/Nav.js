@@ -4,6 +4,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
+import LoginModal from "./LoginModal";
 
 function Nav() {
   return (
@@ -13,8 +14,9 @@ function Nav() {
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                     Meet The Teacher
                 </Typography>
-                <Button color="inherit">Create Account</Button>
-                <Button color="inherit">Login</Button>
+                <Button color="inherit">
+                    <LoginModal />
+                </Button>
             </Toolbar>
         </Container>
       </AppBar>
