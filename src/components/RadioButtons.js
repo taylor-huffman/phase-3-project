@@ -14,16 +14,16 @@ export default function RadioButtons() {
 
   return (
     <FormControl>
-      <FormLabel id="controlled-radio-buttons-group">Choose Your Role</FormLabel>
+      <FormLabel id="userRole">Choose Your Role</FormLabel>
       <RadioGroup
         row
-        aria-labelledby="controlled-radio-buttons-group"
-        name="controlled-radio-buttons-group"
+        aria-labelledby="userRole"
+        name="userRole"
         // value={value}
         // onChange={handleChange}
       >
-        <FormControlLabel value="Student" control={<Radio />} label="Student" />
-        <FormControlLabel value="Teacher" control={<Radio />} label="Teacher" />
+        <FormControlLabel value="student" control={<Radio />} label="Student" />
+        <FormControlLabel value="teacher" control={<Radio />} label="Teacher" />
       </RadioGroup>
     </FormControl>
   );

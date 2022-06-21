@@ -12,6 +12,8 @@ function Body() {
     const [appointments, setAppointments] = useState([])
     const { user } = useContext(UserContext)
 
+    console.log(user)
+
     useEffect(() => {
         fetch("http://localhost:9292/appointments")
           .then(r => r.json())

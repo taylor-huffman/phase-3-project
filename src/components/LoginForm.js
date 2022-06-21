@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext/*, useState*/ } from 'react'
 import { TextField, Box, Button } from '@mui/material'
 import { UserContext } from '../context/user'
 import RadioButtons from './RadioButtons'
@@ -7,36 +7,27 @@ import RadioButtons from './RadioButtons'
 export default function LoginForm({ setOpenLoginModal }) {
 
     const { setUser } = useContext(UserContext)
+    // const [formData, setFormData] = useState({
+    //     name: '',
+    //     userRole: ''
+    // })
     // const history = useHistory()
 
     function handleOnSubmit(e) {
         e.preventDefault()
+        // const name = e.taget.name.value
+        // const userRole = e.target.userRole.value
+        // console.log(name, userRole)
         setOpenLoginModal(false)
-        localStorage.setItem('currentUser', e.target.name.value)
-        setUser(e.target.name.value)
-        fetch(`${process.env.REACT_APP_API_URL}?name=${e.target.name.value}`)
+        
+        // setUser(e.target.name.value)
+        fetch(`http://localhost:9292/${e.target.userRole.value}s`)
         .then(r => r.json())
         .then(data => {
-            if (data.length === 0) {
-                fetch(`${process.env.REACT_APP_API_URL}`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        name: e.target.name.value,
-                        following: []
-                    })
-                })
-                .then(r => r.json())
-                .then(data => {
-                    console.log(data)
-                })
-                .catch(error => console.log(error))
-            }
+            const user = data.filter(u => u.name === e.target.name.value)
+            setUser(user)
+            localStorage.setItem('currentUser', user)
         })
-        .catch(error => console.log(error))
-        // history.push('/account')
     }
 
     return (
