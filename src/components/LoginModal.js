@@ -17,14 +17,14 @@ const style = {
   p: 4,
 };
 
-function LoginModal() {
+function LoginModal({ text, color, marginTop }) {
   const [openLoginModal, setOpenLogingModal] = useState(false);
   const handleOpen = () => setOpenLogingModal(true);
   const handleClose = () => setOpenLogingModal(false);
 
   return (
     <>
-      <Button onClick={handleOpen} sx={{ color: "#ffffff" }}>Login</Button>
+      <Button onClick={handleOpen} sx={{ color: color, border: "1px solid", marginTop: marginTop }}>{text}</Button>
       <Modal
         open={openLoginModal}
         onClose={handleClose}

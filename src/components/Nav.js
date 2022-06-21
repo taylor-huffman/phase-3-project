@@ -13,7 +13,7 @@ function Nav() {
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                     Meet The Teacher
                 </Typography>
-                <LoginModal />
+                <LoginModal text="Login" color="#ffffff" marginTop="0" />
             </Toolbar>
         </Container>
       </AppBar>
