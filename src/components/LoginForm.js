@@ -1,15 +1,17 @@
 import React, { useContext } from 'react'
 import { TextField, Box, Button } from '@mui/material'
 import { UserContext } from '../context/user'
+import RadioButtons from './RadioButtons'
 // import { useHistory } from 'react-router-dom'
 
-export default function LoginForm() {
+export default function LoginForm({ setOpenLoginModal }) {
 
     const { setUser } = useContext(UserContext)
     // const history = useHistory()
 
     function handleOnSubmit(e) {
         e.preventDefault()
+        setOpenLoginModal(false)
         localStorage.setItem('currentUser', e.target.name.value)
         setUser(e.target.name.value)
         fetch(`${process.env.REACT_APP_API_URL}?name=${e.target.name.value}`)
@@ -46,6 +48,7 @@ export default function LoginForm() {
                         noValidate
                         autoComplete="off">
                         <TextField id="outlined-basic" label="Name" name='name' variant="outlined" />
+                        <RadioButtons />
                         <Button
                             variant="contained"
                             sx={{'& > :not(style)': { m: 1, margin: 0, width: '100%' },}}

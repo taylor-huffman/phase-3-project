@@ -39,7 +39,7 @@ function a11yProps(index) {
   };
 }
 
-export default function LoginTabs() {
+export default function LoginTabs({ setOpenLoginModal }) {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -55,10 +55,10 @@ export default function LoginTabs() {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        <LoginForm />
+        <LoginForm setOpenLoginModal={setOpenLoginModal} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <CreateAccountForm />
+        <CreateAccountForm setOpenLoginModal={setOpenLoginModal} />
       </TabPanel>
     </>
   );

@@ -18,9 +18,9 @@ const style = {
 };
 
 function LoginModal({ text, color, marginTop }) {
-  const [openLoginModal, setOpenLogingModal] = useState(false);
-  const handleOpen = () => setOpenLogingModal(true);
-  const handleClose = () => setOpenLogingModal(false);
+  const [openLoginModal, setOpenLoginModal] = useState(false);
+  const handleOpen = () => setOpenLoginModal(true);
+  const handleClose = () => setOpenLoginModal(false);
 
   return (
     <>
@@ -38,7 +38,7 @@ function LoginModal({ text, color, marginTop }) {
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
           </Typography> */}
-          <LoginTabs />
+          <LoginTabs setOpenLoginModal={setOpenLoginModal} />
         </Box>
       </Modal>
     </>
