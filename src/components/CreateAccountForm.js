@@ -50,7 +50,7 @@ export default function CreateAccountForm() {
                             variant="contained"
                             sx={{'& > :not(style)': { m: 1, margin: 0, width: '100%' },}}
                             type="submit">
-                                Log In
+                                Create Account
                         </Button>
                     </Box>
                 </form>
