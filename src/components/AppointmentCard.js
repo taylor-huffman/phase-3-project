@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import { UserContext } from '../context/user'
+import AppointmentModal from './AppointmentModal';
 
 
 // const bull = (
@@ -34,9 +35,7 @@ export default function AppointmentCard({ appointment }) {
             <Typography sx={{ mb: 1.5 }} color="text.secondary">
                 Subject: {appointment.subject.name}
             </Typography>
-            <Button sx={{ minWidth: 'unset' }}>
-                <EditOutlinedIcon />
-            </Button>
+                <AppointmentModal icon={<EditOutlinedIcon />} border="unset" minWidth="unset" marginTop="0" />
             <Button sx={{ minWidth: 'unset' }}>
                 <CancelOutlinedIcon />
             </Button>

@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import LoginModal from "./LoginModal";
 import { Add } from '@mui/icons-material';
 import { UserContext } from '../context/user'
 import AppointmentList from "./AppointmentList";
+import AppointmentModal from "./AppointmentModal";
 
 
 function Body() {
@@ -20,9 +20,7 @@ function Body() {
                             <Typography variant="h3" component="h3" sx={{ textAlign: "center"}}>
                                 Create New Appointment
                             </Typography>
-                            <Button color="primary" variant="outlined" size="large" sx={{ width: "fit-content", marginTop: "30px" }}>
-                                <Add fontSize="large" />
-                            </Button>
+                                <AppointmentModal icon={<Add fontSize="large" />} border="1px solid" minWidth="64px" color="#000000" marginTop="15px" />
                     </Container>
                 </section>
                 <section>

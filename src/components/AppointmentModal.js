@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-// import Typography from '@mui/material/Typography';
+import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import LoginTabs from './LoginTabs';
 
 
 const style = {
@@ -18,32 +17,31 @@ const style = {
   p: 4,
 };
 
-function LoginModal({ text, color, marginTop }) {
-  const [openLoginModal, setOpenLoginModal] = useState(false);
-  const handleOpen = () => setOpenLoginModal(true);
-  const handleClose = () => setOpenLoginModal(false);
+function AppointmentModal({ icon, color, border, minWidth, marginTop }) {
+  const [openAppointmentModal, setOpenAppointmentModal] = useState(false);
+  const handleOpen = () => setOpenAppointmentModal(true);
+  const handleClose = () => setOpenAppointmentModal(false);
 
   return (
     <>
-      <Button onClick={handleOpen} sx={{ color: color, border: "1px solid", marginTop: marginTop }}>{text}</Button>
+      <Button onClick={handleOpen} sx={{ color: color, border: border, marginTop: marginTop, minWidth: minWidth }}>{icon}</Button>
       <Modal
-        open={openLoginModal}
+        open={openAppointmentModal}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          {/* <Typography id="modal-modal-title" variant="h6" component="h2">
+          <Typography id="modal-modal-title" variant="h6" component="h2">
             Text in a modal
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography> */}
-          <LoginTabs setOpenLoginModal={setOpenLoginModal} />
+          </Typography>
         </Box>
       </Modal>
     </>
   );
 }
 
-export default LoginModal
+export default AppointmentModal
