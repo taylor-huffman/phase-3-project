@@ -21,12 +21,11 @@ export default function LoginForm({ setOpenLoginModal }) {
         setOpenLoginModal(false)
         
         // setUser(e.target.name.value)
-        fetch(`http://localhost:9292/${e.target.userRole.value}s`)
+        fetch(`http://localhost:9292/${e.target.userRole.value}s/find?name=${e.target.name.value}`)
         .then(r => r.json())
-        .then(data => {
-            const user = data.filter(u => u.name === e.target.name.value)
-            setUser(user)
-            localStorage.setItem('currentUser', user)
+        .then(userObj => {
+            setUser(userObj)
+            localStorage.setItem('currentUser', JSON.stringify(userObj))
         })
     }
 
