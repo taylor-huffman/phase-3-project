@@ -18,7 +18,6 @@ export default function LoginForm({ setOpenLoginModal }) {
         // const name = e.taget.name.value
         // const userRole = e.target.userRole.value
         // console.log(name, userRole)
-        setOpenLoginModal(false)
         
         // setUser(e.target.name.value)
         fetch(`http://localhost:9292/${e.target.userRole.value}s/find?name=${e.target.name.value}`)
@@ -26,6 +25,7 @@ export default function LoginForm({ setOpenLoginModal }) {
         .then(userObj => {
             setUser(userObj)
             localStorage.setItem('currentUser', JSON.stringify(userObj))
+            setOpenLoginModal(false)
         })
     }
 
