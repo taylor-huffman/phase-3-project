@@ -32,8 +32,8 @@ function AppointmentModal({ icon, color, border, minWidth, marginTop }) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
+          <Typography id="modal-modal-title" variant="h4" component="h4">
+            Create An Appointment
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             Duis mollis, est non commodo luctus, nisi erat porttitor ligula.

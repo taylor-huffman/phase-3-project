@@ -11,31 +11,27 @@ export default function CreateAccountForm({ setOpenLoginModal }) {
 
     function handleOnSubmit(e) {
         e.preventDefault()
-        setOpenLoginModal(false)
-        localStorage.setItem('currentUser', e.target.name.value)
-        setUser(e.target.name.value)
-        fetch(`${process.env.REACT_APP_API_URL}?name=${e.target.name.value}`)
-        .then(r => r.json())
-        .then(data => {
-            if (data.length === 0) {
-                fetch(`${process.env.REACT_APP_API_URL}`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        name: e.target.name.value,
-                        following: []
-                    })
-                })
-                .then(r => r.json())
-                .then(data => {
-                    console.log(data)
-                })
-                .catch(error => console.log(error))
-            }
+        // setOpenLoginModal(false)
+        // localStorage.setItem('currentUser', e.target.name.value)
+        // setUser(e.target.name.value)
+        let userRole = e.target.userRole.value === 'teacher' ? 1 : 2
+        fetch(`http://localhost:9292/${e.target.userRole.value}s`, {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: e.target.name.value,
+                user_role_id: userRole
+            })
         })
-        .catch(error => console.log(error))
+        .then(r => r.json())
+        .then(userObj => {
+            console.log(userObj)
+            setUser(userObj)
+            localStorage.setItem('currentUser', JSON.stringify(userObj))
+            setOpenLoginModal(false)
+        })
         // history.push('/account')
     }
 
