@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import DatePicker from './DatePicker';
+import CreateAppointmentForm from './CreateAppointmentForm';
 
 
 const style = {
@@ -36,7 +36,7 @@ function AppointmentModal({ icon, color, border, minWidth, marginTop }) {
           <Typography id="modal-modal-title" variant="h4" component="h4">
             Create An Appointment
           </Typography>
-          <DatePicker />
+          <CreateAppointmentForm />
         </Box>
       </Modal>
     </>
