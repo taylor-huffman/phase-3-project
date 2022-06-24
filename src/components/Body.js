@@ -16,7 +16,7 @@ function Body() {
         <>
             {user ? <div>
                 <section>
-                    <Container maxWidth="md" sx={{display: "flex", flexDirection: "column", alignItems: "center", marginTop: "50px", backgroundColor: "#fafafa", padding: "30px"}}>
+                    <Container maxWidth="md" sx={{display: "flex", flexDirection: "column", alignItems: "center", marginTop: "50px", backgroundColor: "#e6f0fa", padding: "30px"}}>
                             <Typography variant="h3" component="h3" sx={{ textAlign: "center"}}>
                                 Create New Appointment
                             </Typography>

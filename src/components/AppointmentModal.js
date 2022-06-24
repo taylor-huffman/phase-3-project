@@ -36,7 +36,7 @@ function AppointmentModal({ icon, color, border, minWidth, marginTop }) {
           <Typography id="modal-modal-title" variant="h4" component="h4">
             Create An Appointment
           </Typography>
-          <CreateAppointmentForm />
+          <CreateAppointmentForm setOpenAppointmentModal={setOpenAppointmentModal} />
         </Box>
       </Modal>
     </>

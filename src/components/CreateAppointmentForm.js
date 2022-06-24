@@ -8,9 +8,9 @@ import Select from '@mui/material/Select';
 import DatePicker from './DatePicker';
 import { UserContext } from '../context/user'
 
-export default function CreateAppointmentForm() {
+export default function CreateAppointmentForm({ setOpenAppointmentModal }) {
 
-    const { user } = useContext(UserContext)
+    const { user, setUser } = useContext(UserContext)
 
     const [subjects, setSubjects] = React.useState([])
     const [partners, setPartners] = React.useState([])
@@ -70,7 +70,16 @@ export default function CreateAppointmentForm() {
             })
         })
         .then(r => r.json())
-        .then(data => console.log(data))
+        .then(
+            fetch(`http://localhost:9292/${user.user_role.role.toLowerCase()}s/${user.id}`)
+            .then(r => r.json())
+            .then(userObj => {
+                setUser(userObj)
+                localStorage.clear()
+                localStorage.setItem('currentUser', JSON.stringify(userObj))
+                setOpenAppointmentModal(false)
+            })
+        )
     }
 
       
