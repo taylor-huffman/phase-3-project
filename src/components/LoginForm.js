@@ -2,24 +2,13 @@ import React, { useContext/*, useState*/ } from 'react'
 import { TextField, Box, Button } from '@mui/material'
 import { UserContext } from '../context/user'
 import RadioButtons from './RadioButtons'
-// import { useHistory } from 'react-router-dom'
 
 export default function LoginForm({ setOpenLoginModal }) {
 
     const { setUser } = useContext(UserContext)
-    // const [formData, setFormData] = useState({
-    //     name: '',
-    //     userRole: ''
-    // })
-    // const history = useHistory()
 
     function handleOnSubmit(e) {
         e.preventDefault()
-        // const name = e.taget.name.value
-        // const userRole = e.target.userRole.value
-        // console.log(name, userRole)
-        
-        // setUser(e.target.name.value)
         fetch(`http://localhost:9292/${e.target.userRole.value}s/find?name=${e.target.name.value}`)
         .then(r => r.json())
         .then(userObj => {

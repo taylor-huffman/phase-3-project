@@ -12,13 +12,6 @@ export default function CreateAppointmentForm({ setOpenAppointmentModal, subject
 
     const { user, setUser } = useContext(UserContext)
 
-    // const [subjects, setSubjects] = React.useState([])
-    // const [partners, setPartners] = React.useState([])
-    // const [chooseSubject, setChooseSubject] = React.useState('')
-    // const [choosePartner, setChoosePartner] = React.useState('')
-    // const [date, setDate] = React.useState('')
-
-
     const handleSubjectChange = (event) => {
         setChooseSubject(event.target.value);
     };
@@ -32,18 +25,9 @@ export default function CreateAppointmentForm({ setOpenAppointmentModal, subject
     }
 
     const userRole = user !== null && user.user_role.role.toLowerCase() === 'teacher' ? 'students' : 'teachers'
-      
-
-    //   console.log(chooseSubject, choosePartner, date)
-    //   console.log(user)
 
       function handleOnSubmit(e) {
         e.preventDefault()
-        // const name = e.taget.name.value
-        // const userRole = e.target.userRole.value
-        // console.log(name, userRole)
-        
-        // setUser(e.target.name.value)
         fetch(`http://localhost:9292/appointments`, {
             method: 'POST',
             headers: {
@@ -83,9 +67,6 @@ export default function CreateAppointmentForm({ setOpenAppointmentModal, subject
                 label={userRole.slice(0,1).toUpperCase() + userRole.slice(1)}
                 onChange={handlePartnerChange}
                 >
-                {/* <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem> */}
                 {partners.map(partner => {
                     return <MenuItem key={partner.id} value={partner.id.toString()}>{partner.name}</MenuItem>
                 })}
@@ -102,9 +83,6 @@ export default function CreateAppointmentForm({ setOpenAppointmentModal, subject
                 label="Subject"
                 onChange={handleSubjectChange}
                 >
-                {/* <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem> */}
                 {subjects.map(subject => {
                     return <MenuItem key={subject.id} value={subject.id.toString()}>{subject.name}</MenuItem>
                 })}

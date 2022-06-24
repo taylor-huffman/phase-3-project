@@ -2,18 +2,13 @@ import React, { useContext } from 'react'
 import { TextField, Box, Button } from '@mui/material'
 import { UserContext } from '../context/user'
 import RadioButtons from './RadioButtons'
-// import { useHistory } from 'react-router-dom'
 
 export default function CreateAccountForm({ setOpenLoginModal }) {
 
     const { setUser } = useContext(UserContext)
-    // const history = useHistory()
 
     function handleOnSubmit(e) {
         e.preventDefault()
-        // setOpenLoginModal(false)
-        // localStorage.setItem('currentUser', e.target.name.value)
-        // setUser(e.target.name.value)
         let userRole = e.target.userRole.value === 'teacher' ? 1 : 2
         fetch(`http://localhost:9292/${e.target.userRole.value}s`, {
             method: 'POST',
@@ -32,7 +27,6 @@ export default function CreateAccountForm({ setOpenLoginModal }) {
             localStorage.setItem('currentUser', JSON.stringify(userObj))
             setOpenLoginModal(false)
         })
-        // history.push('/account')
     }
 
     return (
