@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { Button } from '@mui/material'
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
@@ -8,22 +8,22 @@ import Select from '@mui/material/Select';
 import DatePicker from './DatePicker';
 import { UserContext } from '../context/user'
 
-export default function CreateAppointmentForm({ setOpenAppointmentModal }) {
+export default function CreateAppointmentForm({ setOpenAppointmentModal, subjects, setSubjects, partners, setPartners, chooseSubject, setChooseSubject, choosePartner, setChoosePartner, date, setDate }) {
 
     const { user, setUser } = useContext(UserContext)
 
-    const [subjects, setSubjects] = React.useState([])
-    const [partners, setPartners] = React.useState([])
-    const [chooseSubject, setChooseSubject] = React.useState('')
-    const [choosePartner, setChoosePartner] = React.useState('')
-    const [date, setDate] = React.useState('')
+    // const [subjects, setSubjects] = React.useState([])
+    // const [partners, setPartners] = React.useState([])
+    // const [chooseSubject, setChooseSubject] = React.useState('')
+    // const [choosePartner, setChoosePartner] = React.useState('')
+    // const [date, setDate] = React.useState('')
 
 
     const handleSubjectChange = (event) => {
         setChooseSubject(event.target.value);
     };
 
-    const handleStudentChange = (event) => {
+    const handlePartnerChange = (event) => {
         setChoosePartner(event.target.value)
     }
 
@@ -32,19 +32,6 @@ export default function CreateAppointmentForm({ setOpenAppointmentModal }) {
     }
 
     const userRole = user !== null && user.user_role.role.toLowerCase() === 'teacher' ? 'students' : 'teachers'
-
-    useEffect(() => {
-        fetch('http://localhost:9292/subjects/all')
-        .then(r => r.json())
-        .then(data => setSubjects(data))
-      }, [])
-      
-
-    useEffect(() => {
-        fetch(`http://localhost:9292/${userRole}/all`)
-        .then(r => r.json())
-        .then(data => setPartners(data))
-    }, [userRole])
       
 
     //   console.log(chooseSubject, choosePartner, date)
@@ -93,14 +80,14 @@ export default function CreateAppointmentForm({ setOpenAppointmentModal }) {
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 value={choosePartner}
-                label="Student"
-                onChange={handleStudentChange}
+                label={userRole.slice(0,1).toUpperCase() + userRole.slice(1)}
+                onChange={handlePartnerChange}
                 >
                 {/* <MenuItem value={10}>Ten</MenuItem>
                 <MenuItem value={20}>Twenty</MenuItem>
                 <MenuItem value={30}>Thirty</MenuItem> */}
-                {partners.map(student => {
-                    return <MenuItem key={student.id} value={student.id.toString()}>{student.name}</MenuItem>
+                {partners.map(partner => {
+                    return <MenuItem key={partner.id} value={partner.id.toString()}>{partner.name}</MenuItem>
                 })}
                 </Select>
             </FormControl>

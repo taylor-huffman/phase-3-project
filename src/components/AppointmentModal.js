@@ -18,7 +18,7 @@ const style = {
   p: 4,
 };
 
-function AppointmentModal({ icon, color, border, minWidth, marginTop }) {
+function AppointmentModal({ icon, color, border, minWidth, marginTop, subjects, setSubjects, partners, setPartners, chooseSubject, setChooseSubject, choosePartner, setChoosePartner, date, setDate }) {
   const [openAppointmentModal, setOpenAppointmentModal] = useState(false);
   const handleOpen = () => setOpenAppointmentModal(true);
   const handleClose = () => setOpenAppointmentModal(false);
@@ -36,7 +36,7 @@ function AppointmentModal({ icon, color, border, minWidth, marginTop }) {
           <Typography id="modal-modal-title" variant="h4" component="h4">
             Create An Appointment
           </Typography>
-          <CreateAppointmentForm setOpenAppointmentModal={setOpenAppointmentModal} />
+          <CreateAppointmentForm setOpenAppointmentModal={setOpenAppointmentModal} subjects={subjects} setSubjects={setSubjects} partners={partners} setPartners={setPartners} chooseSubject={chooseSubject} setChooseSubject={setChooseSubject} choosePartner={choosePartner} setChoosePartner={setChoosePartner} date={date} setDate={setDate} />
         </Box>
       </Modal>
     </>

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import LoginModal from "./LoginModal";
@@ -12,6 +12,27 @@ function Body() {
 
     const { user } = useContext(UserContext)
 
+    const [subjects, setSubjects] = React.useState([])
+    const [partners, setPartners] = React.useState([])
+    const [chooseSubject, setChooseSubject] = React.useState('')
+    const [choosePartner, setChoosePartner] = React.useState('')
+    const [date, setDate] = React.useState('')
+
+    const userRole = user !== null && user.user_role.role.toLowerCase() === 'teacher' ? 'students' : 'teachers'
+
+    useEffect(() => {
+        fetch('http://localhost:9292/subjects/all')
+        .then(r => r.json())
+        .then(data => setSubjects(data))
+      }, [])
+      
+
+    useEffect(() => {
+        fetch(`http://localhost:9292/${userRole}/all`)
+        .then(r => r.json())
+        .then(data => setPartners(data))
+    }, [userRole])
+
     return (
         <>
             {user ? <div>
@@ -20,7 +41,7 @@ function Body() {
                             <Typography variant="h3" component="h3" sx={{ textAlign: "center"}}>
                                 Create New Appointment
                             </Typography>
-                                <AppointmentModal icon={<Add fontSize="large" />} border="1px solid" minWidth="64px" color="#000000" marginTop="15px" />
+                                <AppointmentModal icon={<Add fontSize="large" />} border="1px solid" minWidth="64px" color="#000000" marginTop="15px" subjects={subjects} setSubjects={setSubjects} partners={partners} setPartners={setPartners} chooseSubject={chooseSubject} setChooseSubject={setChooseSubject} choosePartner={choosePartner} setChoosePartner={setChoosePartner} date={date} setDate={setDate} />
                     </Container>
                 </section>
                 <section>
@@ -28,7 +49,7 @@ function Body() {
                             <Typography variant="p" component="p" sx={{ fontWeight: "bolder" }}>
                                 Current Appointments For {user.name}
                             </Typography>
-                            <AppointmentList appointments={user.appointments} />
+                            <AppointmentList appointments={user.appointments} subjects={subjects} setSubjects={setSubjects} partners={partners} setPartners={setPartners} chooseSubject={chooseSubject} setChooseSubject={setChooseSubject} choosePartner={choosePartner} setChoosePartner={setChoosePartner} date={date} setDate={setDate} />
                     </Container>
                 </section>
             </div>
