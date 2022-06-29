@@ -6,12 +6,10 @@ import { UserProvider } from './context/user';
 
 function App() {
   return (
-    <>
       <UserProvider>
         <Nav />
         <Body />
       </UserProvider>
-    </>
   );
 }
 

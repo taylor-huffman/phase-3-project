@@ -18,7 +18,7 @@ const style = {
   p: 4,
 };
 
-function AppointmentModal({ icon, color, border, minWidth, marginTop, subjects, setSubjects, partners, setPartners, chooseSubject, setChooseSubject, choosePartner, setChoosePartner, date, setDate, openAppointmentModal, handleClose, handleOpen, setOpenAppointmentModal, appointmentForm, appointment }) {
+function EditAppointmentModal({ icon, color, border, minWidth, marginTop, subjects, setSubjects, partners, setPartners, chooseSubject, setChooseSubject, choosePartner, setChoosePartner, date, setDate, openAppointmentModal, handleClose, handleOpen, setOpenAppointmentModal, appointmentForm, appointment }) {
   // const [openAppointmentModal, setOpenAppointmentModal] = useState(false);
   // const handleOpen = () => setOpenAppointmentModal(true);
   // const handleClose = () => setOpenAppointmentModal(false);
@@ -43,4 +43,4 @@ function AppointmentModal({ icon, color, border, minWidth, marginTop, subjects, 
   );
 }
 
-export default AppointmentModal
+export default EditAppointmentModal

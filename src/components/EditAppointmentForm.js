@@ -8,7 +8,7 @@ import Select from '@mui/material/Select';
 import DatePicker from './DatePicker';
 import { UserContext } from '../context/user'
 
-export default function CreateAppointmentForm({ setOpenAppointmentModal, subjects, setSubjects, partners, setPartners, chooseSubject, setChooseSubject, choosePartner, setChoosePartner, date, setDate, appointmentForm, appointment }) {
+export default function EditAppointmentForm({ setOpenAppointmentModal, subjects, setSubjects, partners, setPartners, chooseSubject, setChooseSubject, choosePartner, setChoosePartner, date, setDate, appointmentForm, appointment }) {
 
     const { user } = useContext(UserContext)
 

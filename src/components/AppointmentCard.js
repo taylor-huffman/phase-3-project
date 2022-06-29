@@ -6,9 +6,9 @@ import Typography from '@mui/material/Typography';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import { UserContext } from '../context/user'
-import AppointmentModal from './AppointmentModal';
+import EditAppointmentModal from './EditAppointmentModal'
 
-export default function AppointmentCard({ appointment, subjects, setSubjects, partners, setPartners, chooseSubject, setChooseSubject, choosePartner, setChoosePartner, date, setDate }) {
+export default function AppointmentCard({ appointment, subjects, setSubjects, partners, setPartners, chooseSubject, setChooseSubject, choosePartner, setChoosePartner, date, setDate, openAppointmentModal, handleClose, handleOpen, setOpenAppointmentModal, patchAppointment }) {
 
     const { user } = useContext(UserContext)
 
@@ -31,7 +31,7 @@ export default function AppointmentCard({ appointment, subjects, setSubjects, pa
             <Typography sx={{ mb: 1.5 }} color="text.secondary">
                 Subject: {appointment.subject.name}
             </Typography>
-                <AppointmentModal icon={<EditOutlinedIcon onClick={handleEditOnClick} />} border="unset" minWidth="unset" marginTop="0" subjects={subjects} partners={partners} date={date} chooseSubject={chooseSubject} choosePartner={choosePartner} setChoosePartner={setChoosePartner} setChooseSubject={setChooseSubject} setDate={setDate} setSubjects={setSubjects} setPartners={setPartners} />
+                <EditAppointmentModal icon={<EditOutlinedIcon onClick={handleEditOnClick} />} border="unset" minWidth="unset" marginTop="0" subjects={subjects} partners={partners} date={date} chooseSubject={chooseSubject} choosePartner={choosePartner} setChoosePartner={setChoosePartner} setChooseSubject={setChooseSubject} setDate={setDate} setSubjects={setSubjects} setPartners={setPartners} openAppointmentModal={openAppointmentModal} handleClose={handleClose} handleOpen={handleOpen} setOpenAppointmentModal={setOpenAppointmentModal} appointmentForm={patchAppointment} appointment={appointment} />
             <Button sx={{ minWidth: 'unset' }}>
                 <CancelOutlinedIcon />
             </Button>
