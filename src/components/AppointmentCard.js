@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
@@ -6,17 +6,43 @@ import Typography from '@mui/material/Typography';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import { UserContext } from '../context/user'
-import EditAppointmentModal from './EditAppointmentModal'
+// import EditAppointmentModal from './EditAppointmentModal'
+import EditAppointmentForm from './EditAppointmentForm';
+import Collapse from '@mui/material/Collapse';
 
-export default function AppointmentCard({ appointment, subjects, setSubjects, partners, setPartners, chooseSubject, setChooseSubject, choosePartner, setChoosePartner, date, setDate, openAppointmentModal, handleClose, handleOpen, setOpenAppointmentModal, patchAppointment }) {
+export default function AppointmentCard({ appointment, subjects, setSubjects, partners, setPartners, openEditAppointmentModal, handleCloseEdit, handleOpenEdit, setOpenEditAppointmentModal }) {
 
-    const { user } = useContext(UserContext)
+    const { user, setUser } = useContext(UserContext)
+    const [editSubject, setEditSubject] = useState(appointment.subject.id)
+    const [editPartner, setEditPartner] = useState(user !== null && user.user_role.role.toLowerCase() === 'teacher' ? `${appointment.student.id}` : `${appointment.teacher.id}`)
+    const [editDate, setEditDate] = useState(appointment.date)
+    const [collapse, setCollapse] = useState(false);
 
-    function handleEditOnClick() {
-        console.log("time to edit")
-        setChooseSubject(appointment.subject.id)
-        setChoosePartner(user !== null && user.user_role.role.toLowerCase() === 'teacher' ? `${appointment.student.id}` : `${appointment.teacher.id}`)
-        setDate(appointment.date)
+    // function handleEditOnClick() {
+    //     console.log("time to edit", appointment)
+    //     setEditSubject(appointment.subject.id)
+    //     setEditPartner(user !== null && user.user_role.role.toLowerCase() === 'teacher' ? `${appointment.student.id}` : `${appointment.teacher.id}`)
+    //     setEditDate(appointment.date)
+    // }
+
+    function handleOnClick() {
+        setCollapse(collapse => !collapse)
+    }
+
+    function handleDeleteOnClick() {
+        fetch(`http://localhost:9292/appointments/${appointment.id}`, {
+            method: 'DELETE'
+        })
+        .then(r => r.json())
+        .then(
+            fetch(`http://localhost:9292/${user.user_role.role.toLowerCase()}s/${user.id}`)
+            .then(r => r.json())
+            .then(userObj => {
+                setUser(userObj)
+                localStorage.clear()
+                localStorage.setItem('currentUser', JSON.stringify(userObj))
+            })
+        )
     }
 
   return (
@@ -31,10 +57,16 @@ export default function AppointmentCard({ appointment, subjects, setSubjects, pa
             <Typography sx={{ mb: 1.5 }} color="text.secondary">
                 Subject: {appointment.subject.name}
             </Typography>
-                <EditAppointmentModal icon={<EditOutlinedIcon onClick={handleEditOnClick} />} border="unset" minWidth="unset" marginTop="0" subjects={subjects} partners={partners} date={date} chooseSubject={chooseSubject} choosePartner={choosePartner} setChoosePartner={setChoosePartner} setChooseSubject={setChooseSubject} setDate={setDate} setSubjects={setSubjects} setPartners={setPartners} openAppointmentModal={openAppointmentModal} handleClose={handleClose} handleOpen={handleOpen} setOpenAppointmentModal={setOpenAppointmentModal} appointmentForm={patchAppointment} appointment={appointment} />
-            <Button sx={{ minWidth: 'unset' }}>
+                {/* <EditAppointmentModal handleEditOnClick={handleEditOnClick} icon={<EditOutlinedIcon />} border="unset" minWidth="unset" marginTop="0" subjects={subjects} partners={partners} editDate={editDate} editSubject={editSubject} editPartner={editPartner} setEditPartner={setEditPartner} setEditSubject={setEditSubject} setEditDate={setEditDate} setSubjects={setSubjects} setPartners={setPartners} openEditAppointmentModal={openEditAppointmentModal} handleCloseEdit={handleCloseEdit} handleOpenEdit={handleOpenEdit} setOpenEditAppointmentModal={setOpenEditAppointmentModal} appointment={appointment} /> */}
+            <Button onClick={handleOnClick} sx={{ minWidth: 'unset' }}>
+                <EditOutlinedIcon />
+            </Button>    
+            <Button onClick={handleDeleteOnClick} sx={{ minWidth: 'unset' }}>
                 <CancelOutlinedIcon />
             </Button>
+            <Collapse in={collapse}>
+                <EditAppointmentForm subjects={subjects} partners={partners} editDate={editDate} editSubject={editSubject} editPartner={editPartner} setEditPartner={setEditPartner} setEditSubject={setEditSubject} setEditDate={setEditDate} setSubjects={setSubjects} setPartners={setPartners} openEditAppointmentModal={openEditAppointmentModal} handleCloseEdit={handleCloseEdit} handleOpenEdit={handleOpenEdit} setOpenEditAppointmentModal={setOpenEditAppointmentModal} appointment={appointment} setCollapse={setCollapse} />
+            </Collapse>
         </CardContent>
     </Card>
   );

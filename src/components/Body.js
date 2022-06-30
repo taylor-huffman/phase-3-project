@@ -10,16 +10,23 @@ import AppointmentModal from "./AppointmentModal";
 
 function Body() {
 
-    const { user, setUser } = useContext(UserContext)
+    const { user } = useContext(UserContext)
 
     const [subjects, setSubjects] = useState([])
     const [partners, setPartners] = useState([])
     const [chooseSubject, setChooseSubject] = useState('')
     const [choosePartner, setChoosePartner] = useState('')
     const [date, setDate] = useState('')
+    // const [editSubject, setEditSubject] = useState('')
+    // const [editPartner, setEditPartner] = useState('')
+    // const [editDate, setEditDate] = useState('')
     const [openAppointmentModal, setOpenAppointmentModal] = useState(false);
+    const [openEditAppointmentModal, setOpenEditAppointmentModal] = useState(false);
+
     const handleOpen = () => setOpenAppointmentModal(true);
     const handleClose = () => setOpenAppointmentModal(false);
+    const handleOpenEdit = () => setOpenEditAppointmentModal(true);
+    const handleCloseEdit = () => setOpenEditAppointmentModal(false);
 
     const userRole = user !== null && user.user_role.role.toLowerCase() === 'teacher' ? 'students' : 'teachers'
 
@@ -36,59 +43,59 @@ function Body() {
         .then(data => setPartners(data))
     }, [userRole])
 
-    const postAppointment = (id) => {
-        console.log('post appointment')
-        // fetch(`http://localhost:9292/appointments`, {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-type': 'application/json'
-        //     },
-        //     body: JSON.stringify({
-        //         date: date,
-        //         student_id: user !== null && user.user_role.role.toLowerCase() === 'teacher' ? choosePartner : user.id,
-        //         teacher_id: user !== null && user.user_role.role.toLowerCase() === 'student' ? choosePartner : user.id,
-        //         subject_id: chooseSubject
-        //     })
-        // })
-        // .then(r => r.json())
-        // .then(
-        //     fetch(`http://localhost:9292/${user.user_role.role.toLowerCase()}s/${user.id}`)
-        //     .then(r => r.json())
-        //     .then(userObj => {
-        //         setUser(userObj)
-        //         localStorage.clear()
-        //         localStorage.setItem('currentUser', JSON.stringify(userObj))
-        //         setOpenAppointmentModal(false)
-        //     })
-        // )
-    }
+    // const postAppointment = () => {
+    //     console.log('post appointment')
+    //     fetch(`http://localhost:9292/appointments`, {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-type': 'application/json'
+    //         },
+    //         body: JSON.stringify({
+    //             date: date,
+    //             student_id: user !== null && user.user_role.role.toLowerCase() === 'teacher' ? choosePartner : user.id,
+    //             teacher_id: user !== null && user.user_role.role.toLowerCase() === 'student' ? choosePartner : user.id,
+    //             subject_id: chooseSubject
+    //         })
+    //     })
+    //     .then(r => r.json())
+    //     .then(
+    //         fetch(`http://localhost:9292/${user.user_role.role.toLowerCase()}s/${user.id}`)
+    //         .then(r => r.json())
+    //         .then(userObj => {
+    //             setUser(userObj)
+    //             localStorage.clear()
+    //             localStorage.setItem('currentUser', JSON.stringify(userObj))
+    //             setOpenAppointmentModal(false)
+    //         })
+    //     )
+    // }
 
-    const patchAppointment = (id) => {
-        console.log('patch appointment')
-        // fetch(`http://localhost:9292/appointments/${id}`, {
-        //     method: 'PATCH',
-        //     headers: {
-        //         'Content-type': 'application/json'
-        //     },
-        //     body: JSON.stringify({
-        //         date: date,
-        //         student_id: user !== null && user.user_role.role.toLowerCase() === 'teacher' ? choosePartner : user.id,
-        //         teacher_id: user !== null && user.user_role.role.toLowerCase() === 'student' ? choosePartner : user.id,
-        //         subject_id: chooseSubject
-        //     })
-        // })
-        // .then(r => r.json())
-        // .then(
-        //     fetch(`http://localhost:9292/${user.user_role.role.toLowerCase()}s/${user.id}`)
-        //     .then(r => r.json())
-        //     .then(userObj => {
-        //         setUser(userObj)
-        //         localStorage.clear()
-        //         localStorage.setItem('currentUser', JSON.stringify(userObj))
-        //         setOpenAppointmentModal(false)
-        //     })
-        // )
-    }
+    // const patchAppointment = (id) => {
+    //     console.log('patch appointment', id)
+    //     fetch(`http://localhost:9292/appointments/${id}`, {
+    //         method: 'PATCH',
+    //         headers: {
+    //             'Content-type': 'application/json'
+    //         },
+    //         body: JSON.stringify({
+    //             date: editDate,
+    //             student_id: user !== null && user.user_role.role.toLowerCase() === 'teacher' ? editPartner : user.id,
+    //             teacher_id: user !== null && user.user_role.role.toLowerCase() === 'student' ? editPartner : user.id,
+    //             subject_id: editSubject
+    //         })
+    //     })
+    //     .then(r => r.json())
+    //     .then(
+    //         fetch(`http://localhost:9292/${user.user_role.role.toLowerCase()}s/${user.id}`)
+    //         .then(r => r.json())
+    //         .then(userObj => {
+    //             setUser(userObj)
+    //             localStorage.clear()
+    //             localStorage.setItem('currentUser', JSON.stringify(userObj))
+    //             setOpenEditAppointmentModal(false)
+    //         })
+    //     )
+    // }
 
     return (
         <>
@@ -98,7 +105,7 @@ function Body() {
                             <Typography variant="h3" component="h3" sx={{ textAlign: "center"}}>
                                 Create New Appointment
                             </Typography>
-                                <AppointmentModal icon={<Add fontSize="large" />} border="1px solid" minWidth="64px" color="#000000" marginTop="15px" subjects={subjects} setSubjects={setSubjects} partners={partners} setPartners={setPartners} chooseSubject={chooseSubject} setChooseSubject={setChooseSubject} choosePartner={choosePartner} setChoosePartner={setChoosePartner} date={date} setDate={setDate} openAppointmentModal={openAppointmentModal} handleClose={handleClose} handleOpen={handleOpen} setOpenAppointmentModal={setOpenAppointmentModal} appointmentForm={postAppointment} />
+                                <AppointmentModal icon={<Add fontSize="large" />} border="1px solid" minWidth="64px" color="#000000" marginTop="15px" subjects={subjects} setSubjects={setSubjects} partners={partners} setPartners={setPartners} chooseSubject={chooseSubject} setChooseSubject={setChooseSubject} choosePartner={choosePartner} setChoosePartner={setChoosePartner} date={date} setDate={setDate} openAppointmentModal={openAppointmentModal} handleClose={handleClose} handleOpen={handleOpen} setOpenAppointmentModal={setOpenAppointmentModal} />
                     </Container>
                 </section>
                 <section>
@@ -106,7 +113,7 @@ function Body() {
                             <Typography variant="p" component="p" sx={{ fontWeight: "bolder" }}>
                                 Current Appointments For {user.name}
                             </Typography>
-                            <AppointmentList appointments={user.appointments} subjects={subjects} setSubjects={setSubjects} partners={partners} setPartners={setPartners} chooseSubject={chooseSubject} setChooseSubject={setChooseSubject} choosePartner={choosePartner} setChoosePartner={setChoosePartner} date={date} setDate={setDate} openAppointmentModal={openAppointmentModal} handleClose={handleClose} handleOpen={handleOpen} setOpenAppointmentModal={setOpenAppointmentModal} patchAppointment={patchAppointment} />
+                            <AppointmentList appointments={user.appointments} subjects={subjects} setSubjects={setSubjects} partners={partners} setPartners={setPartners}  openEditAppointmentModal={openEditAppointmentModal} handleCloseEdit={handleCloseEdit} handleOpenEdit={handleOpenEdit} setOpenEditAppointmentModal={setOpenEditAppointmentModal} />
                     </Container>
                 </section>
             </div>

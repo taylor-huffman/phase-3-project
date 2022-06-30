@@ -8,50 +8,49 @@ import Select from '@mui/material/Select';
 import DatePicker from './DatePicker';
 import { UserContext } from '../context/user'
 
-export default function EditAppointmentForm({ setOpenAppointmentModal, subjects, setSubjects, partners, setPartners, chooseSubject, setChooseSubject, choosePartner, setChoosePartner, date, setDate, appointmentForm, appointment }) {
+export default function EditAppointmentForm({ setOpenEditAppointmentModal, subjects, setSubjects, partners, setPartners, editSubject, setEditSubject, editPartner, setEditPartner, editDate, setEditDate, appointment, setCollapse }) {
 
-    const { user } = useContext(UserContext)
+    const { user, setUser } = useContext(UserContext)
 
     const handleSubjectChange = (event) => {
-        setChooseSubject(event.target.value);
+        setEditSubject(event.target.value);
     };
 
     const handlePartnerChange = (event) => {
-        setChoosePartner(event.target.value)
+        setEditPartner(event.target.value)
     }
 
     const handleSetDate = (event) => {
-        setDate(event.target.value)
+        setEditDate(event.target.value)
     }
 
     const userRole = user !== null && user.user_role.role.toLowerCase() === 'teacher' ? 'students' : 'teachers'
 
       function handleOnSubmit(e) {
         e.preventDefault()
-        appointmentForm()
-        // fetch(`http://localhost:9292/appointments`, {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-type': 'application/json'
-        //     },
-        //     body: JSON.stringify({
-        //         date: date,
-        //         student_id: user !== null && user.user_role.role.toLowerCase() === 'teacher' ? choosePartner : user.id,
-        //         teacher_id: user !== null && user.user_role.role.toLowerCase() === 'student' ? choosePartner : user.id,
-        //         subject_id: chooseSubject
-        //     })
-        // })
-        // .then(r => r.json())
-        // .then(
-        //     fetch(`http://localhost:9292/${user.user_role.role.toLowerCase()}s/${user.id}`)
-        //     .then(r => r.json())
-        //     .then(userObj => {
-        //         setUser(userObj)
-        //         localStorage.clear()
-        //         localStorage.setItem('currentUser', JSON.stringify(userObj))
-        //         setOpenAppointmentModal(false)
-        //     })
-        // )
+        setCollapse(collapse => !collapse)
+        fetch(`http://localhost:9292/appointments/${appointment.id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                date: editDate,
+                student_id: user !== null && user.user_role.role.toLowerCase() === 'teacher' ? editPartner : user.id,
+                teacher_id: user !== null && user.user_role.role.toLowerCase() === 'student' ? editPartner : user.id,
+                subject_id: editSubject
+            })
+        })
+        .then(r => r.json())
+        .then(
+            fetch(`http://localhost:9292/${user.user_role.role.toLowerCase()}s/${user.id}`)
+            .then(r => r.json())
+            .then(userObj => {
+                setUser(userObj)
+                localStorage.clear()
+                localStorage.setItem('currentUser', JSON.stringify(userObj))
+            })
+        )
     }
 
       
@@ -64,7 +63,7 @@ export default function EditAppointmentForm({ setOpenAppointmentModal, subjects,
                 <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
-                value={choosePartner}
+                value={editPartner}
                 label={userRole.slice(0,1).toUpperCase() + userRole.slice(1)}
                 onChange={handlePartnerChange}
                 >
@@ -80,7 +79,7 @@ export default function EditAppointmentForm({ setOpenAppointmentModal, subjects,
                 <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
-                value={chooseSubject}
+                value={editSubject}
                 label="Subject"
                 onChange={handleSubjectChange}
                 >
@@ -91,7 +90,7 @@ export default function EditAppointmentForm({ setOpenAppointmentModal, subjects,
             </FormControl>
         </Box>
         <Box sx={{ marginTop: '20px' }}>
-        <DatePicker handleSetDate={handleSetDate} date={date} />
+        <DatePicker handleSetDate={handleSetDate} date={editDate} />
         </Box>
         <Box sx={{ marginTop: '20px' }}>
         <Button

@@ -8,9 +8,9 @@ import Select from '@mui/material/Select';
 import DatePicker from './DatePicker';
 import { UserContext } from '../context/user'
 
-export default function CreateAppointmentForm({ setOpenAppointmentModal, subjects, setSubjects, partners, setPartners, chooseSubject, setChooseSubject, choosePartner, setChoosePartner, date, setDate, appointmentForm, appointment }) {
+export default function CreateAppointmentForm({ setOpenAppointmentModal, subjects, setSubjects, partners, setPartners, chooseSubject, setChooseSubject, choosePartner, setChoosePartner, date, setDate, appointment }) {
 
-    const { user } = useContext(UserContext)
+    const { user, setUser } = useContext(UserContext)
 
     const handleSubjectChange = (event) => {
         setChooseSubject(event.target.value);
@@ -28,30 +28,29 @@ export default function CreateAppointmentForm({ setOpenAppointmentModal, subject
 
       function handleOnSubmit(e) {
         e.preventDefault()
-        appointmentForm()
-        // fetch(`http://localhost:9292/appointments`, {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-type': 'application/json'
-        //     },
-        //     body: JSON.stringify({
-        //         date: date,
-        //         student_id: user !== null && user.user_role.role.toLowerCase() === 'teacher' ? choosePartner : user.id,
-        //         teacher_id: user !== null && user.user_role.role.toLowerCase() === 'student' ? choosePartner : user.id,
-        //         subject_id: chooseSubject
-        //     })
-        // })
-        // .then(r => r.json())
-        // .then(
-        //     fetch(`http://localhost:9292/${user.user_role.role.toLowerCase()}s/${user.id}`)
-        //     .then(r => r.json())
-        //     .then(userObj => {
-        //         setUser(userObj)
-        //         localStorage.clear()
-        //         localStorage.setItem('currentUser', JSON.stringify(userObj))
-        //         setOpenAppointmentModal(false)
-        //     })
-        // )
+        fetch(`http://localhost:9292/appointments`, {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                date: date,
+                student_id: user !== null && user.user_role.role.toLowerCase() === 'teacher' ? choosePartner : user.id,
+                teacher_id: user !== null && user.user_role.role.toLowerCase() === 'student' ? choosePartner : user.id,
+                subject_id: chooseSubject
+            })
+        })
+        .then(r => r.json())
+        .then(
+            fetch(`http://localhost:9292/${user.user_role.role.toLowerCase()}s/${user.id}`)
+            .then(r => r.json())
+            .then(userObj => {
+                setUser(userObj)
+                localStorage.clear()
+                localStorage.setItem('currentUser', JSON.stringify(userObj))
+                setOpenAppointmentModal(false)
+            })
+        )
     }
 
       
