@@ -53,7 +53,8 @@ export default function EditAppointmentForm({
             })
         })
         .then(r => r.json())
-        .then(() => {
+        .then((editedAppointment) => {
+            console.log(editedAppointment)
             localStorage.clear()
             fetch(`http://localhost:9292/${user.user_role.role.toLowerCase()}s/${user.id}`)
             .then(r => r.json())

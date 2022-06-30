@@ -17,7 +17,8 @@ export default function CreateAppointmentForm({
         choosePartner,
         setChoosePartner,
         date,
-        setDate
+        setDate,
+        setAllAppointments
     }) {
 
     const { user, setUser } = useContext(UserContext)
@@ -51,7 +52,9 @@ export default function CreateAppointmentForm({
             })
         })
         .then(r => r.json())
-        .then(() => {
+        .then((newAppointment) => {
+            console.log(newAppointment)
+            setAllAppointments(appointments => [...appointments, newAppointment])
             localStorage.clear()
             fetch(`http://localhost:9292/${user.user_role.role.toLowerCase()}s/${user.id}`)
             .then(r => r.json())

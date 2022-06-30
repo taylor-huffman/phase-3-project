@@ -12,7 +12,8 @@ import Collapse from '@mui/material/Collapse';
 export default function AppointmentCard({
         appointment,
         subjects,
-        partners
+        partners,
+        setAllAppointments
     }) {
 
     const { user, setUser } = useContext(UserContext)
@@ -32,7 +33,9 @@ export default function AppointmentCard({
             method: 'DELETE'
         })
         .then(r => r.json())
-        .then(() => {
+        .then((deletedAppointment) => {
+            console.log(deletedAppointment)
+            setAllAppointments(appointments => appointments.filter(appointment => appointment.id !== deletedAppointment.id))
             localStorage.clear()
             fetch(`http://localhost:9292/${user.user_role.role.toLowerCase()}s/${user.id}`)
             .then(r => r.json())

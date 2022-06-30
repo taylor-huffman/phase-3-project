@@ -11,7 +11,8 @@ function AppointmentList({
         editPartner,
         setEditPartner,
         editDate,
-        setEditDate
+        setEditDate,
+        setAllAppointments
     }) {
     return (
         <>
@@ -29,6 +30,7 @@ function AppointmentList({
                         setEditPartner={setEditPartner}
                         editDate={editDate}
                         setEditDate={setEditDate}
+                        setAllAppointments={setAllAppointments}
                     />
                 )
             })

@@ -30,7 +30,8 @@ function AppointmentModal({
     setDate,
     openAppointmentModal,
     handleClose,
-    handleOpen
+    handleOpen,
+    setAllAppointments
   }) {
 
   return (
@@ -68,6 +69,7 @@ function AppointmentModal({
             setChoosePartner={setChoosePartner}
             date={date}
             setDate={setDate}
+            setAllAppointments={setAllAppointments}
           />
         </Box>
       </Modal>

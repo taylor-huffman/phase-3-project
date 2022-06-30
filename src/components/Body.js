@@ -13,6 +13,7 @@ function Body() {
 
     const [subjects, setSubjects] = useState([])
     const [partners, setPartners] = useState([])
+    const [allAppointments, setAllAppointments] = useState([])
     const [chooseSubject, setChooseSubject] = useState('')
     const [choosePartner, setChoosePartner] = useState('')
     const [date, setDate] = useState('')
@@ -36,6 +37,13 @@ function Body() {
         .then(data => setPartners(data))
     }, [userRole])
 
+
+    useEffect(() => {
+        fetch('http://localhost:9292/appointments/all')
+        .then(r => r.json())
+        .then(data => setAllAppointments(data))
+    }, [])
+
     return (
         <>
             {user ?
@@ -49,7 +57,8 @@ function Body() {
                                 alignItems: "center",
                                 marginTop: "50px",
                                 backgroundColor: "#e6f0fa",
-                                padding: "30px"
+                                padding: "30px",
+                                borderBottom: "1px solid rgb(0 0 0 / 40%)"
                             }}
                         >
                             <Typography
@@ -72,6 +81,7 @@ function Body() {
                                     openAppointmentModal={openAppointmentModal}
                                     handleClose={handleClose}
                                     handleOpen={handleOpen}
+                                    setAllAppointments={setAllAppointments}
                                 />
                         </Container>
                     </section>
@@ -96,7 +106,38 @@ function Body() {
                                 appointments={user.appointments}
                                 subjects={subjects}
                                 partners={partners}
+                                setAllAppointments={setAllAppointments}
                             />
+                        </Container>
+                    </section>
+                    <section>
+                        <Container
+                            maxWidth="md"
+                            sx={{
+                                display: "flex",
+                                flexDirection: "column",
+                                marginTop: "50px"
+                            }}
+                        >
+                            <Typography
+                                variant="p"
+                                component="p"
+                                sx={{
+                                    fontWeight: "bolder",
+                                    marginBottom: "15px",
+                                    padding: "15px",
+                                    borderBottom: "1px solid rgb(0 0 0 / 40%)",
+                                    backgroundColor: "#E6F0FA"
+                                }}>
+                                All Appointments
+                            </Typography>
+                                {allAppointments.map(appointment => {
+                                    return (
+                                        <div key={appointment.id}>
+                                            <p><b>{appointment.teacher.name}</b> with <b>{appointment.student.name}</b> studying <b>{appointment.subject.name}</b> on <b>{appointment.date}</b></p>
+                                        </div>
+                                    )
+                                })}
                         </Container>
                     </section>
                 </div>
