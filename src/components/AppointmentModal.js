@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import CreateAppointmentForm from './CreateAppointmentForm';
+import { Add } from '@mui/icons-material';
 
 
 const style = {
@@ -19,15 +20,8 @@ const style = {
 };
 
 function AppointmentModal({
-    icon,
-    color,
-    border,
-    minWidth,
-    marginTop,
     subjects,
-    setSubjects,
     partners,
-    setPartners,
     chooseSubject,
     setChooseSubject,
     choosePartner,
@@ -36,9 +30,7 @@ function AppointmentModal({
     setDate,
     openAppointmentModal,
     handleClose,
-    handleOpen,
-    setOpenAppointmentModal,
-    appointment
+    handleOpen
   }) {
 
   return (
@@ -46,12 +38,12 @@ function AppointmentModal({
       <Button
         onClick={handleOpen}
         sx={{
-          color: color,
-          border: border,
-          marginTop: marginTop,
-          minWidth: minWidth
+          color: "#000000",
+          border: "1px solid",
+          marginTop: "15px",
+          minWidth: "64px"
         }}>
-        {icon}
+        <Add fontSize="large" />
       </Button>
       <Modal
         open={openAppointmentModal}
@@ -67,18 +59,15 @@ function AppointmentModal({
             Create An Appointment
           </Typography>
           <CreateAppointmentForm
-            setOpenAppointmentModal={setOpenAppointmentModal}
+            handleClose={handleClose}
             subjects={subjects}
-            setSubjects={setSubjects}
             partners={partners}
-            setPartners={setPartners}
             chooseSubject={chooseSubject}
             setChooseSubject={setChooseSubject}
             choosePartner={choosePartner}
             setChoosePartner={setChoosePartner}
             date={date}
             setDate={setDate}
-            appointment={appointment}
           />
         </Box>
       </Modal>

@@ -9,18 +9,15 @@ import DatePicker from './DatePicker';
 import { UserContext } from '../context/user'
 
 export default function CreateAppointmentForm({
-        setOpenAppointmentModal,
+        handleClose,
         subjects,
-        setSubjects,
         partners,
-        setPartners,
         chooseSubject,
         setChooseSubject,
         choosePartner,
         setChoosePartner,
         date,
-        setDate,
-        appointment
+        setDate
     }) {
 
     const { user, setUser } = useContext(UserContext)
@@ -54,16 +51,16 @@ export default function CreateAppointmentForm({
             })
         })
         .then(r => r.json())
-        .then(
+        .then(() => {
+            localStorage.clear()
             fetch(`http://localhost:9292/${user.user_role.role.toLowerCase()}s/${user.id}`)
             .then(r => r.json())
             .then(userObj => {
                 setUser(userObj)
-                localStorage.clear()
                 localStorage.setItem('currentUser', JSON.stringify(userObj))
-                setOpenAppointmentModal(false)
+                handleClose()
             })
-        )
+        })
     }
 
       

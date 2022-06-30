@@ -12,12 +12,7 @@ import Collapse from '@mui/material/Collapse';
 export default function AppointmentCard({
         appointment,
         subjects,
-        setSubjects,
-        partners, setPartners,
-        openEditAppointmentModal,
-        handleCloseEdit,
-        handleOpenEdit,
-        setOpenEditAppointmentModal
+        partners
     }) {
 
     const { user, setUser } = useContext(UserContext)
@@ -37,15 +32,15 @@ export default function AppointmentCard({
             method: 'DELETE'
         })
         .then(r => r.json())
-        .then(
+        .then(() => {
+            localStorage.clear()
             fetch(`http://localhost:9292/${user.user_role.role.toLowerCase()}s/${user.id}`)
             .then(r => r.json())
             .then(userObj => {
                 setUser(userObj)
-                localStorage.clear()
                 localStorage.setItem('currentUser', JSON.stringify(userObj))
             })
-        )
+        })
     }
 
     return (
@@ -87,12 +82,6 @@ export default function AppointmentCard({
                         setEditPartner={setEditPartner}
                         setEditSubject={setEditSubject}
                         setEditDate={setEditDate}
-                        setSubjects={setSubjects}
-                        setPartners={setPartners}
-                        openEditAppointmentModal={openEditAppointmentModal}
-                        handleCloseEdit={handleCloseEdit}
-                        handleOpenEdit={handleOpenEdit}
-                        setOpenEditAppointmentModal={setOpenEditAppointmentModal}
                         appointment={appointment}
                         setCollapse={setCollapse} />
                 </Collapse>

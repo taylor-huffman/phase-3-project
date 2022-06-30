@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import LoginModal from "./LoginModal";
-import { Add } from '@mui/icons-material';
 import { UserContext } from '../context/user'
 import AppointmentList from "./AppointmentList";
 import AppointmentModal from "./AppointmentModal";
@@ -18,12 +17,9 @@ function Body() {
     const [choosePartner, setChoosePartner] = useState('')
     const [date, setDate] = useState('')
     const [openAppointmentModal, setOpenAppointmentModal] = useState(false);
-    const [openEditAppointmentModal, setOpenEditAppointmentModal] = useState(false);
 
     const handleOpen = () => setOpenAppointmentModal(true);
     const handleClose = () => setOpenAppointmentModal(false);
-    const handleOpenEdit = () => setOpenEditAppointmentModal(true);
-    const handleCloseEdit = () => setOpenEditAppointmentModal(false);
 
     const userRole = user !== null && user.user_role.role.toLowerCase() === 'teacher' ? 'students' : 'teachers'
 
@@ -65,15 +61,8 @@ function Body() {
                                 Create New Appointment
                             </Typography>
                                 <AppointmentModal
-                                    icon={<Add fontSize="large" />}
-                                    border="1px solid"
-                                    minWidth="64px"
-                                    color="#000000"
-                                    marginTop="15px"
                                     subjects={subjects}
-                                    setSubjects={setSubjects}
                                     partners={partners}
-                                    setPartners={setPartners}
                                     chooseSubject={chooseSubject}
                                     setChooseSubject={setChooseSubject}
                                     choosePartner={choosePartner}
@@ -83,7 +72,6 @@ function Body() {
                                     openAppointmentModal={openAppointmentModal}
                                     handleClose={handleClose}
                                     handleOpen={handleOpen}
-                                    setOpenAppointmentModal={setOpenAppointmentModal}
                                 />
                         </Container>
                     </section>
@@ -107,13 +95,7 @@ function Body() {
                             <AppointmentList
                                 appointments={user.appointments}
                                 subjects={subjects}
-                                setSubjects={setSubjects}
                                 partners={partners}
-                                setPartners={setPartners}
-                                openEditAppointmentModal={openEditAppointmentModal}
-                                handleCloseEdit={handleCloseEdit}
-                                handleOpenEdit={handleOpenEdit}
-                                setOpenEditAppointmentModal={setOpenEditAppointmentModal}
                             />
                         </Container>
                     </section>
