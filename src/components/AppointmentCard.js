@@ -86,7 +86,9 @@ export default function AppointmentCard({
                         setEditSubject={setEditSubject}
                         setEditDate={setEditDate}
                         appointment={appointment}
-                        setCollapse={setCollapse} />
+                        setCollapse={setCollapse}
+                        setAllAppointments={setAllAppointments}
+                    />
                 </Collapse>
             </CardContent>
         </Card>

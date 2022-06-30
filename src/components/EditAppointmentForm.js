@@ -18,7 +18,8 @@ export default function EditAppointmentForm({
         editDate,
         setEditDate,
         appointment,
-        setCollapse
+        setCollapse,
+        setAllAppointments
     }) {
 
     const { user, setUser } = useContext(UserContext)
@@ -55,6 +56,7 @@ export default function EditAppointmentForm({
         .then(r => r.json())
         .then((editedAppointment) => {
             console.log(editedAppointment)
+            
             localStorage.clear()
             fetch(`http://localhost:9292/${user.user_role.role.toLowerCase()}s/${user.id}`)
             .then(r => r.json())
