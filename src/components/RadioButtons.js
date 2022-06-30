@@ -5,7 +5,8 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 
-export default function RadioButtons() {return (
+export default function RadioButtons() {
+  return (
     <FormControl>
       <FormLabel id="userRole">Choose Your Role</FormLabel>
       <RadioGroup

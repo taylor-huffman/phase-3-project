@@ -17,21 +17,22 @@ function Nav() {
   }
 
   return (
-      <AppBar position="static">
-        <Container maxWidth="md">
-            <Toolbar sx={{ padding: "0!important" }}>
-                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                    Meet The Teacher
-                </Typography>
-                {user ?
-                <Button sx={{ color: "#ffffff", padding: "0" }} onClick={handleLogOutOnClick} >
-                  Logout
-                </Button>
-                :
-                <LoginModal text="Login" color="#ffffff" marginTop="0" />}
-            </Toolbar>
-        </Container>
-      </AppBar>
+    <AppBar position="static">
+      <Container maxWidth="md">
+        <Toolbar sx={{ padding: "0!important" }}>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            Meet The Teacher
+          </Typography>
+          {user ?
+            <Button sx={{ color: "#ffffff", padding: "0" }} onClick={handleLogOutOnClick} >
+              Logout
+            </Button>
+            :
+            <LoginModal text="Login" color="#ffffff" marginTop="0" />
+          }
+        </Toolbar>
+      </Container>
+    </AppBar>
   );
 }
 

@@ -18,14 +18,41 @@ const style = {
   p: 4,
 };
 
-function AppointmentModal({ icon, color, border, minWidth, marginTop, subjects, setSubjects, partners, setPartners, chooseSubject, setChooseSubject, choosePartner, setChoosePartner, date, setDate, openAppointmentModal, handleClose, handleOpen, setOpenAppointmentModal, appointment }) {
-  // const [openAppointmentModal, setOpenAppointmentModal] = useState(false);
-  // const handleOpen = () => setOpenAppointmentModal(true);
-  // const handleClose = () => setOpenAppointmentModal(false);
+function AppointmentModal({
+    icon,
+    color,
+    border,
+    minWidth,
+    marginTop,
+    subjects,
+    setSubjects,
+    partners,
+    setPartners,
+    chooseSubject,
+    setChooseSubject,
+    choosePartner,
+    setChoosePartner,
+    date,
+    setDate,
+    openAppointmentModal,
+    handleClose,
+    handleOpen,
+    setOpenAppointmentModal,
+    appointment
+  }) {
 
   return (
     <>
-      <Button onClick={handleOpen} sx={{ color: color, border: border, marginTop: marginTop, minWidth: minWidth }}>{icon}</Button>
+      <Button
+        onClick={handleOpen}
+        sx={{
+          color: color,
+          border: border,
+          marginTop: marginTop,
+          minWidth: minWidth
+        }}>
+        {icon}
+      </Button>
       <Modal
         open={openAppointmentModal}
         onClose={handleClose}
@@ -33,10 +60,26 @@ function AppointmentModal({ icon, color, border, minWidth, marginTop, subjects, 
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h4" component="h4">
+          <Typography
+            id="modal-modal-title"
+            variant="h4"
+            component="h4">
             Create An Appointment
           </Typography>
-          <CreateAppointmentForm setOpenAppointmentModal={setOpenAppointmentModal} subjects={subjects} setSubjects={setSubjects} partners={partners} setPartners={setPartners} chooseSubject={chooseSubject} setChooseSubject={setChooseSubject} choosePartner={choosePartner} setChoosePartner={setChoosePartner} date={date} setDate={setDate} appointment={appointment} />
+          <CreateAppointmentForm
+            setOpenAppointmentModal={setOpenAppointmentModal}
+            subjects={subjects}
+            setSubjects={setSubjects}
+            partners={partners}
+            setPartners={setPartners}
+            chooseSubject={chooseSubject}
+            setChooseSubject={setChooseSubject}
+            choosePartner={choosePartner}
+            setChoosePartner={setChoosePartner}
+            date={date}
+            setDate={setDate}
+            appointment={appointment}
+          />
         </Box>
       </Modal>
     </>

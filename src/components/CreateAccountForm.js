@@ -30,23 +30,42 @@ export default function CreateAccountForm({ setOpenLoginModal }) {
     }
 
     return (
-            <>
-                <h1>Create Account</h1>
-                <form onSubmit={handleOnSubmit}>
-                    <Box
-                        sx={{'& > :not(style)': { m: 1, display: 'flex', flexDirection: 'column', margin: '25px 0' },}}
-                        noValidate
-                        autoComplete="off">
-                        <TextField id="outlined-basic" label="Name" name='name' variant="outlined" />
-                        <RadioButtons />
-                        <Button
-                            variant="contained"
-                            sx={{'& > :not(style)': { m: 1, margin: 0, width: '100%' },}}
-                            type="submit">
-                                Create Account
-                        </Button>
-                    </Box>
-                </form>
-            </>
+        <>
+            <h1>Create Account</h1>
+            <form onSubmit={handleOnSubmit}>
+                <Box
+                    sx={{
+                        '& > :not(style)': {
+                            m: 1,
+                            display: 'flex',
+                            flexDirection: 'column',
+                            margin: '25px 0'
+                        }
+                    }}
+                    noValidate
+                    autoComplete="off"
+                >
+                    <TextField
+                        id="outlined-basic"
+                        label="Name"
+                        name='name'
+                        variant="outlined"
+                    />
+                    <RadioButtons />
+                    <Button
+                        variant="contained"
+                        sx={{
+                            '& > :not(style)': {
+                                m: 1,
+                                margin: 0,
+                                width: '100%'
+                            }
+                        }}
+                        type="submit">
+                        Create Account
+                    </Button>
+                </Box>
+            </form>
+        </>
     )
 }
