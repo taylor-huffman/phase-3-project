@@ -79,7 +79,7 @@ npm start
 And there you have it, the Meet The Teacher app should now be open in your browser and you should have both the frontend and backend files open in VSCode, ready to modify as you see fit!
 
 ## Media and Data Credits
-Images from Canva.com
+Images from https://canva.com
 
 ## Contact Me For Questions
 Have any questions? Feel free to shoot me an email: [taylor@crucialartists.com](mailto:taylor@crucialartists.com)
