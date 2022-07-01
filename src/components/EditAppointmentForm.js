@@ -56,7 +56,15 @@ export default function EditAppointmentForm({
         .then(r => r.json())
         .then((editedAppointment) => {
             console.log(editedAppointment)
-            
+            setAllAppointments(appointments => {
+                return appointments.map(appointment => {
+                    if (appointment.id === editedAppointment.id) {
+                        return editedAppointment
+                    } else {
+                        return appointment
+                    }
+                })
+            })
             localStorage.clear()
             fetch(`http://localhost:9292/${user.user_role.role.toLowerCase()}s/${user.id}`)
             .then(r => r.json())

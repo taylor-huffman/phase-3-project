@@ -14,9 +14,20 @@ function AppointmentList({
         setEditDate,
         setAllAppointments
     }) {
+
+    const appointmentsSortByDate = appointments.sort((a,b) => {
+        if (a.date < b.date) {
+            return -1
+        } else if (a.date > b.date) {
+            return 1
+        } else {
+            return 0
+        }
+    })
+
     return (
         <>
-            {appointments.length ? appointments.map(appointment => {
+            {appointmentsSortByDate.length ? appointments.map(appointment => {
                 return (
                     <AppointmentCard
                         key={appointment.id}

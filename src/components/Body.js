@@ -44,6 +44,16 @@ function Body() {
         .then(data => setAllAppointments(data))
     }, [])
 
+    const allAppointmentsSortByDate = allAppointments.sort((a,b) => {
+        if (a.date < b.date) {
+            return -1
+        } else if (a.date > b.date) {
+            return 1
+        } else {
+            return 0
+        }
+    })
+
     return (
         <>
             {user ?
@@ -131,7 +141,7 @@ function Body() {
                                 }}>
                                 All Appointments
                             </Typography>
-                                {allAppointments.map(appointment => {
+                                {allAppointmentsSortByDate.map(appointment => {
                                     return (
                                         <div key={appointment.id}>
                                             <p><b>{appointment.teacher.name}</b> with <b>{appointment.student.name}</b> studying <b>{appointment.subject.name}</b> on <b>{appointment.date}</b></p>
