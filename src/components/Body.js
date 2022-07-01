@@ -65,20 +65,28 @@ function Body() {
                                 display: "flex",
                                 flexDirection: "column",
                                 alignItems: "center",
-                                marginTop: "50px",
-                                backgroundColor: "#e6f0fa",
-                                padding: "30px",
-                                borderBottom: "1px solid rgb(0 0 0 / 40%)"
+                                marginTop: "50px"
                             }}
                         >
-                            <Typography
+                            <Container
+                                sx={{
+                                    backgroundColor: "#e6f0fa",
+                                    padding: "15px",
+                                    borderBottom: "1px solid rgb(0 0 0 / 40%)",
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    flexWrap: 'wrap'
+                                }}
+                            >
+                                <Typography
                                 variant="h3"
                                 component="h3"
                                 sx={{
                                     textAlign: "center"
                                 }}>
                                 Create New Appointment
-                            </Typography>
+                                </Typography>
                                 <AppointmentModal
                                     subjects={subjects}
                                     partners={partners}
@@ -93,6 +101,7 @@ function Body() {
                                     handleOpen={handleOpen}
                                     setAllAppointments={setAllAppointments}
                                 />
+                            </Container>
                         </Container>
                     </section>
                     <section>
@@ -129,6 +138,9 @@ function Body() {
                                 marginTop: "50px"
                             }}
                         >
+                            <div style={{ display: 'flex' }}>
+                                <img alt="Teacher And Student Collage" src={require('../media/teacher-and-student-02.jpg')} width='100%' />
+                            </div>
                             <Typography
                                 variant="p"
                                 component="p"
@@ -177,6 +189,9 @@ function Body() {
                                 color="#000000"
                                 marginTop="30px"
                             />
+                            <div style={{ display: 'flex', marginTop: '50px' }}>
+                                <img alt="Teacher And Student" src={require('../media/teacher-and-student-01.jpg')} width='100%' />
+                            </div>
                         </Container>
                     </section>
                 </div>

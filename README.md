@@ -1,70 +1,85 @@
-# Getting Started with Create React App
+# Meet The Teacher
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
+Meet The Teacher is a scheduling app that allows both students and teachers to schedule tutoring sessions with their favorite teacher or student.
 
-## Available Scripts
+## How It Works 
+Simply visit https://peppy-alfajores-5631c4.netlify.app/ and begin viewing stock transactions.
 
-In the project directory, you can run:
+NOTE: If you'd like to follow any of the politicians listed, click the 'LOGIN' link in the navigation bar, enter your name to login, and then click back to the 'HOME' page to view transactions and click the 'FOLLOW' button under each of the transaction details to add that politician to your list.
 
-### `npm start`
+![Meet The Teacher Gif](./src/media/readme/meet-the-teacher-walkthrough.gif)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Project Setup
+### Frontend Setup
+Start by forking the frontend of the project
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+![Fork The Project](./src/media/readme/ph2%20-%20forkproject.jpg)
 
-### `npm test`
+Next, grab your SSH key. (Make sure you see your user name where the red text is)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![Grab SSH Key](./src/media/readme/ph2%20-%20grabssh.jpg)
 
-### `npm run build`
+Next, navigate to your desired folder in Ubuntu and type in the following command to clone your newly created repo, making sure your username is taking place of 'your-user-name' in the url:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+git clone git@github.com:your-user-name/phase-3-project.git
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Then, navigate to the root folder of the project:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+cd phase-3-project/
+```
 
-### `npm run eject`
+Once in the root folder, copy and paste the following command to open VS Code:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```
+code .
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Once VS Code is open, click " Ctrl + ` " to open the VS Code terminal, then type in the following command to install the frontend project dependencies:
+```
+npm install
+```
+Leave the frontend project files open in VSCode as we'll return to it in just a minute.
+### Backend Setup
+Next, fork the backend of the project. The backend can be found at the link below:
+https://github.com/taylor-huffman/phase-3-sinatra-react-project
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+![Fork The Project](./src/media/readme/ph2%20-%20forkproject%20-%20backend.jpg)
+Next, grab your SSH key. (Make sure you see your user name where the red text is)
+![Grab SSH Key](./src/media/readme/ph2%20-%20grabssh%20-%20backend.jpg)
+Next, navigate to your desired folder in Ubuntu and type in the following command to clone your newly created repo, making sure your username is taking place of 'your-user-name' in the url:
+```
+git clone git@github.com:your-user-name/phase-3-sinatra-react-project.git
+```
+Then, navigate to the root folder of the project:
+```
+cd phase-3-sinatra-react-project/
+```
+Once in the root folder, copy and paste the following command to open VS Code:
+```
+code .
+```
+Once VS Code is open, click " Ctrl + ` " to open the VS Code terminal, then type in the following command to install the project dependencies:
+```
+bundle install
+```
+Finally, run the following command to start up your backend server:
+```
+rake server
+```
+Leave backend files open in VSCode.
+### Return to the frontend project files in VSCode
+In your terminal, type in the following command:
+```
+npm start
+```
+And there you have it, the Meet The Teacher app should now be open in your browser and you should have both the frontend and backend files open in VSCode, ready to modify as you see fit!
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Contact Me For Questions
+Have any questions? Feel free to shoot me an email: [taylor@crucialartists.com](mailto:taylor@crucialartists.com)
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## MIT License
+[Click to view license information](./MIT-LICENSE)

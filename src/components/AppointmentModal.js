@@ -41,7 +41,7 @@ function AppointmentModal({
         sx={{
           color: "#000000",
           border: "1px solid",
-          marginTop: "15px",
+          margin: "0 25px",
           minWidth: "64px"
         }}>
         <Add fontSize="large" />
