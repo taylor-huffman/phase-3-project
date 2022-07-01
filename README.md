@@ -3,11 +3,6 @@
 ## Description
 Meet The Teacher is a scheduling app that allows both students and teachers to schedule tutoring sessions with their favorite teacher or student.
 
-## How It Works 
-Simply visit https://peppy-alfajores-5631c4.netlify.app/ and begin viewing stock transactions.
-
-NOTE: If you'd like to follow any of the politicians listed, click the 'LOGIN' link in the navigation bar, enter your name to login, and then click back to the 'HOME' page to view transactions and click the 'FOLLOW' button under each of the transaction details to add that politician to your list.
-
 ![Meet The Teacher Gif](./src/media/readme/meet-the-teacher-walkthrough.gif)
 
 ## Project Setup
@@ -77,6 +72,17 @@ In your terminal, type in the following command:
 npm start
 ```
 And there you have it, the Meet The Teacher app should now be open in your browser and you should have both the frontend and backend files open in VSCode, ready to modify as you see fit!
+
+## Operating Instructions
+Now that you've finished setting up the project, simply visit the page in your browser (http://localhost:3000/) and start by clicking the login button to login or create an account.
+
+NOTE: When creating an account for students, please you first and last name. When creating an account for teachers, please use the following naming convention show in the follwing examples:
+
+Ms. Harris
+Mrs. West
+Mr. Brown
+
+From there you can see all existing scheduled appointments, and you can add, edit, and delete appointments specific to your user account.
 
 ## Media and Data Credits
 Images from https://canva.com
