@@ -65,13 +65,23 @@ export default function EditAppointmentForm({
                     }
                 })
             })
-            localStorage.clear()
-            fetch(`http://localhost:9292/${user.user_role.role.toLowerCase()}s/${user.id}`)
-            .then(r => r.json())
-            .then(userObj => {
-                setUser(userObj)
-                localStorage.setItem('currentUser', JSON.stringify(userObj))
+            let userData = JSON.parse(localStorage.currentUser)
+            userData.appointments = userData.appointments.map(appointment => {
+                if (appointment.id === editedAppointment.id) {
+                    return editedAppointment
+                } else {
+                    return appointment
+                }
             })
+            setUser(userData)
+            localStorage.setItem('currentUser', JSON.stringify(userData))
+            // localStorage.clear()
+            // fetch(`http://localhost:9292/${user.user_role.role.toLowerCase()}s/${user.id}`)
+            // .then(r => r.json())
+            // .then(userObj => {
+            //     setUser(userObj)
+            //     localStorage.setItem('currentUser', JSON.stringify(userObj))
+            // })
         })
     }
 
