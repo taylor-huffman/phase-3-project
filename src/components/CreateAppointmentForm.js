@@ -54,14 +54,20 @@ export default function CreateAppointmentForm({
         .then(r => r.json())
         .then((newAppointment) => {
             setAllAppointments(appointments => [...appointments, newAppointment])
-            localStorage.clear()
-            fetch(`http://localhost:9292/${user.user_role.role.toLowerCase()}s/${user.id}`)
-            .then(r => r.json())
-            .then(userObj => {
-                setUser(userObj)
-                localStorage.setItem('currentUser', JSON.stringify(userObj))
-                handleClose()
-            })
+            let userData = JSON.parse(localStorage.currentUser)
+            userData.appointments.push(newAppointment)
+            console.log(newAppointment, userData)
+            setUser(userData)
+            localStorage.setItem('currentUser', JSON.stringify(userData))
+            handleClose()
+            // localStorage.clear()
+            // fetch(`http://localhost:9292/${user.user_role.role.toLowerCase()}s/${user.id}`)
+            // .then(r => r.json())
+            // .then(userObj => {
+            //     setUser(userObj)
+            //     localStorage.setItem('currentUser', JSON.stringify(userObj))
+            //     handleClose()
+            // })
         })
     }
 
