@@ -59,15 +59,8 @@ export default function CreateAppointmentForm({
             setUser(userData)
             localStorage.setItem('currentUser', JSON.stringify(userData))
             handleClose()
-            // localStorage.clear()
-            // fetch(`http://localhost:9292/${user.user_role.role.toLowerCase()}s/${user.id}`)
-            // .then(r => r.json())
-            // .then(userObj => {
-            //     setUser(userObj)
-            //     localStorage.setItem('currentUser', JSON.stringify(userObj))
-            //     handleClose()
-            // })
         })
+        .catch(r => console.log(r))
     }
 
       

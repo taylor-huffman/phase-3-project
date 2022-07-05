@@ -39,14 +39,8 @@ export default function AppointmentCard({
             userData.appointments = userData.appointments.filter(appointment => appointment.id !== deletedAppointment.id)
             setUser(userData)
             localStorage.setItem('currentUser', JSON.stringify(userData))
-            // localStorage.clear()
-            // fetch(`http://localhost:9292/${user.user_role.role.toLowerCase()}s/${user.id}`)
-            // .then(r => r.json())
-            // .then(userObj => {
-            //     setUser(userObj)
-            //     localStorage.setItem('currentUser', JSON.stringify(userObj))
-            // })
         })
+        .catch(r => console.log(r))
     }
 
     return (

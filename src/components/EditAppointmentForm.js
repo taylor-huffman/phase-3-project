@@ -55,7 +55,6 @@ export default function EditAppointmentForm({
         })
         .then(r => r.json())
         .then((editedAppointment) => {
-            console.log(editedAppointment)
             setAllAppointments(appointments => {
                 return appointments.map(appointment => {
                     if (appointment.id === editedAppointment.id) {
@@ -75,14 +74,8 @@ export default function EditAppointmentForm({
             })
             setUser(userData)
             localStorage.setItem('currentUser', JSON.stringify(userData))
-            // localStorage.clear()
-            // fetch(`http://localhost:9292/${user.user_role.role.toLowerCase()}s/${user.id}`)
-            // .then(r => r.json())
-            // .then(userObj => {
-            //     setUser(userObj)
-            //     localStorage.setItem('currentUser', JSON.stringify(userObj))
-            // })
         })
+        .catch(r => console.log(r))
     }
 
       
