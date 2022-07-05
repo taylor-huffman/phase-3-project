@@ -26,6 +26,7 @@ export default function CreateAccountForm({ setOpenLoginModal }) {
             localStorage.setItem('currentUser', JSON.stringify(userObj))
             setOpenLoginModal(false)
         })
+        .catch(r => console.log(r))
     }
 
     return (
