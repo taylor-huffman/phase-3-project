@@ -28,6 +28,7 @@ function Body() {
         fetch('http://localhost:9292/subjects/all')
         .then(r => r.json())
         .then(data => setSubjects(data))
+        .catch(r => console.log(r))
     }, [])
       
 
@@ -35,6 +36,7 @@ function Body() {
         fetch(`http://localhost:9292/${userRole}/all`)
         .then(r => r.json())
         .then(data => setPartners(data))
+        .catch(r => console.log(r))
     }, [userRole])
 
 
@@ -42,6 +44,7 @@ function Body() {
         fetch('http://localhost:9292/appointments/all')
         .then(r => r.json())
         .then(data => setAllAppointments(data))
+        .catch(r => console.log(r))
     }, [])
 
     const allAppointmentsSortByDate = allAppointments.sort((a,b) => {
