@@ -56,7 +56,6 @@ export default function CreateAppointmentForm({
             setAllAppointments(appointments => [...appointments, newAppointment])
             let userData = JSON.parse(localStorage.currentUser)
             userData.appointments.push(newAppointment)
-            console.log(newAppointment, userData)
             setUser(userData)
             localStorage.setItem('currentUser', JSON.stringify(userData))
             handleClose()
