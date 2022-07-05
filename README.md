@@ -79,7 +79,9 @@ Now that you've finished setting up the project, simply visit the page in your b
 NOTE: When creating an account for students, please you first and last name. When creating an account for teachers, please use the following naming convention show in the follwing examples:
 
 Ms. Harris
+
 Mrs. West
+
 Mr. Brown
 
 From there you can see all existing scheduled appointments, and you can add, edit, and delete appointments specific to your user account.
